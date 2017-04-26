@@ -1,0 +1,17 @@
+{
+  "name": "geekbrains-js-login",
+  "version": "1.0.0",
+  "description": "Окно логина, Geekbrains JS2",
+  "main": "index.js",
+  "scripts": {
+    "test": "hermione"
+  },
+  "pre-commit": [ "test" ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^3.5.0",
+    "hermione": "^0.34.0",
+    "pre-commit": "^1.2.2"
+  }
+}
