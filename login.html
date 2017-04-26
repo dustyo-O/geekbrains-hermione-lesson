@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Вход на сайт</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="vendor/jquery-toast-plugin/dist/jquery.toast.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/login.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <form class="form-signin" role="form">
+        <h2 class="form-signin-heading">Не входить</h2>
+        <input type="text" class="login form-control" placeholder="admin" autofocus>
+        <input type="password" class="password form-control" placeholder="password">
+        <label class="checkbox">
+            <input type="checkbox" value="remember-me"> Запомнить
+        </label>
+        <button class="btn btn-lg btn-primary btn-block login-button" type="submit">Войти</button>
+    </form>
+
+</div> <!-- /container -->
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="vendor/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
+<script>
+    $(function() {
+        $('.login-button').click(function(e) {
+            e.preventDefault();
+            $(this).prop('disabled', 'disabled');
+
+            $.ajax({
+                url: 'login.json',
+                data: {
+                    login: $('.login').val(),
+                    password: $('.password').val()
+                },
+                context: this
+            }).done(function() {
+                document.location.href = 'index.html';
+            }).fail(function() {
+                $('.form-signin').addClass('has-error');
+
+                $.toast({
+                    text: "Логин или пароль неверные",
+                    showHideTransition: 'slide',
+                    bgColor: '#a94442',
+                    loader: false
+                })
+            }).always(function (){
+                $(this).prop('disabled', false);
+            });
+        });
+    });
+</script>
+</body>
+</html>
