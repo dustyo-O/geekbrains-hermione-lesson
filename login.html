@@ -17,7 +17,7 @@
 
 <body>
 
-<div class="container">
+<div class="container page-container">
 
     <form class="form-signin" role="form">
         <h2 class="form-signin-heading">Не входить</h2>
@@ -30,6 +30,7 @@
     </form>
 
 </div> <!-- /container -->
+<script src="js/ajax-router.js"></script>
 <script src="vendor/jquery/dist/jquery.min.js"></script>
 <script src="vendor/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
 <script>
@@ -38,13 +39,16 @@
             e.preventDefault();
             $(this).prop('disabled', 'disabled');
 
+            var data = {
+                login: $('.login').val(),
+                password: $('.password').val()
+            };
+
             $.ajax({
-                url: 'login.json',
-                data: {
-                    login: $('.login').val(),
-                    password: $('.password').val()
-                },
-                context: this
+                url: router('login', data, TEST_MODE),
+                data: data,
+                context: this,
+                cache: false
             }).done(function() {
                 document.location.href = 'index.html';
             }).fail(function() {

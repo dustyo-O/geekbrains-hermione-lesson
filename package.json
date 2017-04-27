@@ -4,7 +4,8 @@
   "description": "Окно логина, Geekbrains JS2",
   "main": "index.js",
   "scripts": {
-    "test": "hermione"
+    "test": "hermione",
+    "postinstall": "bower install"
   },
   "pre-commit": [ "test" ],
   "author": "",
